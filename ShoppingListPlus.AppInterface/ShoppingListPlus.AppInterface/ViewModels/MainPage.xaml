@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShoppingListPlus.AppInterface.ViewModels.MainPage"
+			 xmlns:local="clr-namespace:ShoppingListPlus.AppInterface.ViewModels">
+	<ContentPage.ToolbarItems>
+		<ToolbarItem Text="Group" x:Name="toolbarGroup" Clicked="toolbarGroup_Clicked"/>
+	</ContentPage.ToolbarItems>
+
+	<StackLayout>
+		<Grid x:Name="grid">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+			</Grid.ColumnDefinitions>
+			<Entry Placeholder="Search...." x:Name="search" Grid.ColumnSpan="3" Grid.Row="0" TextChanged="search_TextChanged"/>
+			<Button Text="Sort A-Z" Grid.Column="3" x:Name="buttonSortAlpha" Grid.Row="0" Clicked="buttonSortAlpha_Clicked"/>
+			<Label Text="Multi-Select is ON." IsVisible="False" Grid.Row="1" x:Name="labelIsEditing" Grid.ColumnSpan="4"/>
+			<ListView ItemsSource="{Binding listOfItems}" x:Name="uiList" ItemTapped="uiList_ItemTapped"
+				SelectionMode="Single" Grid.ColumnSpan="4" Grid.Row="2">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell>
+							<ViewCell.View>
+								<Label Text="{Binding Item}" TextColor="Black"
+									FontSize="Large" x:Name="labelItem" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Grid.ColumnSpan="4" />
+							</ViewCell.View>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+			<Entry Grid.Row="3" Grid.ColumnSpan="4" Placeholder="Enter new item..." x:Name="entryNewItem" VerticalOptions="Start" Completed="OnEnterPressed"/>
+		</Grid>
+	</StackLayout>
+	
+
+
+</ContentPage>
